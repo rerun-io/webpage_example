@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Header -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>Rerun webpage example</title>
+
+  <!-- Add icon to title -->
+  <link rel="icon" type="image/svg+xml" href="./assets/favicon.svg" />
+
+  <!-- For icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+  <!-- For style -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <link rel="stylesheet" href="./style.css" type="text/css" />
+</head>
+
+<body>
+
+<!-- Home section -->
+
+<div class="section">
+  <div class="header">
+    <div class="logo">
+      <a href="https://rerun.io/" target="_blank"><img src="./assets/favicon.svg" /></a>
+    </div>
+    <div class="title" style="padding-top: 25pt;">
+      Rerun webpage example
+    </div>
+  </div> 
+	
+  <div class="author">
+    <a href="https://github.com/emilk" target="_blank">Emil Ernerfeldt</a>, 
+    <a href="https://www.linkedin.com/in/nikolauswest/" target="_blank">Nikolaus West</a>,
+    <a href="https://www.linkedin.com/in/moritzschiebold/" target="_blank">Moritz Schiebold</a>
+  </div>
+  <div class="institution">
+    University of Rerun, Stockholm, Sweden
+  </div>
+  <div class="link">
+    <i class="fa fa-file-pdf-o"></i> <a href="https://rerun.io/docs/howto/integrations/embed-web" target="_blank">Paper</a>&nbsp;
+    <i class="fa fa-github"></i> <a href="https://github.com/rerun-io/webpage_example" target="_blank">Code</a>
+  </div>
+
+	<div id="home-wrapper"> 
+    <video id="home-1" width="32%" autoplay loop muted playsinline disablepictureinpicture="" disableremoteplayback="" src="https://static.rerun.io/d4b3aeba88d551833726a9c1b0fa3efe5623d680_tapir_landing_4_3.mp4">
+    </video>
+    <video id="home-2" width="32%" autoplay loop muted playsinline disablepictureinpicture="" disableremoteplayback="" src="https://static.rerun.io/99f60820376cc901666de5578dcaa53bc836a405_spot_landing.mp4"> 
+    </video>
+    <video id="home-3" width="32%" autoplay loop muted playsinline disablepictureinpicture="" disableremoteplayback="" src="https://static.rerun.io/7b9cb889b81ac104f35c8651e95a447578f7adca_slahmr_4_3.mp4"> 
+    </video>
+    <div class="clear"></div> 
+	</div>
+</div>
+
+<!-- Overview section -->
+
+<div class="section">
+  <div class="title">Overview</div>
+  <div class="body">
+  	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse nec tortor elementum, blandit ligula vitae, bibendum erat. Nulla efficitur fringilla erat, sit amet cursus nisl dapibus sed. Maecenas ut lectus purus. Donec lobortis est eu velit ullamcorper aliquam. Fusce eu rutrum urna, nec scelerisque nisl. Quisque rhoncus posuere luctus. Fusce eu semper ligula. Maecenas non enim a arcu sodales porttitor non quis tellus. Donec in diam eleifend, faucibus neque a, suscipit sem. In hac habitasse platea dictumst. 
+  </div>
+
+  <div class="teaser">
+    <img src="https://rerun.io/_app/immutable/assets/hero-illustration.DcsNrpMr.svg">
+  </div>
+</div>
+
+<!-- Results section -->
+
+<div class="section">
+  <div class="title">Results</div>
+	<div class="body">
+		Vestibulum eget sapien bibendum, pulvinar dolor vitae, sagittis tellus. Suspendisse potenti. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque a pharetra metus, eu imperdiet arcu. Fusce ullamcorper sed tortor id mollis. Etiam vulputate commodo tincidunt. Pellentesque pellentesque augue id sem finibus auctor. Aenean vel laoreet libero. Nunc quis enim libero. Pellentesque dictum vitae risus dapibus mollis. Fusce tempor vulputate orci, quis vulputate nisi sollicitudin sit amet.
+	</div>
+</div>
+
+<!-- Demo section -->
+
+<div class="section">
+  <div class="title">Interactive demo</div>
+  Interactive Rerun demo. Note that the viewer is interactive, so you can zoom, pan, and select entities in the 3D scene. If you select an entity in the viewer, it will output the entity path under the viewer. This is achieve using the <a href="https://ref.rerun.io/docs/js/stable/web-viewer/classes/WebViewer.html#on" target="_blank">event listener that calls a callback function</a> every time the <em>selection changes</em>. <a href="https://ref.rerun.io/docs/js/stable/web-viewer/interfaces/WebViewerEvents.html" target="_blank">There are other events</a> that can be listened to, such as, <em>time updates</em>, <em>timeline changes</em>, etc., enabling interesting dynamic interaction between the viewer and the page.
+  <br>
+  <br>
+	<div id="demo"> 
+		<script type="module" src="./src/main.ts"></script>
+	</div>
+  <div id="demo-info">
+  </div>
+</div>
+
+<!-- References section -->
+
+<div class="section">
+<div class="title">References</div>
+<div class="bibtex">BibTeX</div>
+<pre>
+@article{rerun,
+	title={Rerun webpage example},
+	author={Emil Ernerfeldt, Nikolaus West, Moritz Schiebold},
+	journal={Rerun Journal of Webpage Examples},
+	year={2026}
+}
+</pre>
+</div>
+
+</body>
+</html>

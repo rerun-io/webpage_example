@@ -1,0 +1,120 @@
+/* Support both light and dark mode */
+:root {
+  color-scheme: light dark;
+}
+
+/* Body */
+body {
+  background: light-dark(#e3e5e8, #000000);
+  color: light-dark(#ffffff, #000000);
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 500;
+  font-size: 14pt;
+}
+
+/* Hyperlinks */
+a {text-decoration: none;}
+a:link {color: light-dark(#1772d0, #70f2b7);}
+a:visited {color: light-dark(#1772d0, #70f2b7);}
+a:active {color: red;}
+a:hover {color: #f09228;}
+
+/* Pre-formatted Text */
+pre {
+  margin: 5pt 0;
+  border: 0;
+  font-size: 12pt;
+  background: light-dark(#fcfcfc, #030303);
+  color: light-dark(#000000, #b2b2bb);
+}
+
+/* Project Page Style */
+#demo canvas {
+  width: 100% !important;
+  height: 600px !important;
+}
+ 
+/* Section */
+.section {
+  width: 768pt;
+  min-height: 100pt;
+  margin: 15pt auto;
+  padding: 20pt 30pt;
+  border: 1pt hidden #000;
+  text-align: justify;
+  color: light-dark(#000000, #b2b2bb);
+  background: light-dark(#ffffff, #101010);
+}
+
+/* Header (Title and Logo) */
+.section .header {
+  min-height: 80pt;
+  margin-top: 30pt;
+  color: light-dark(#000000, #ffffff);
+}
+.section .header .logo {
+  width: 80pt;
+  margin-left: 10pt;
+  float: left;
+}
+.section .header .logo img {
+  width: 80pt;
+  object-fit: cover;
+}
+.section .header .title {
+  margin: 0 120pt;
+  text-align: center;
+  font-size: 22pt;
+}
+
+/* Author */
+.section .author {
+  margin: 5pt 0;
+  text-align: center;
+  font-size: 16pt;
+}
+
+/* Institution */
+.section .institution {
+  margin: 5pt 0;
+  text-align: center;
+  font-size: 16pt;
+}
+
+/* Hyperlink (such as Paper and Code) */
+.section .link {
+  margin: 5pt 0;
+  text-align: center;
+  font-size: 16pt;
+}
+
+/* Teaser */
+.section .teaser {
+  margin: 20pt 0;
+  text-align: center;
+}
+.section .teaser img {
+  width: 95%;
+}
+
+/* Section Title */
+.section .title {
+  text-align: center;
+  font-size: 22pt;
+  margin: 5pt 0 15pt 0;  /* top right bottom left */
+  color: light-dark(#000000, #ffffff);
+}
+
+/* Section Body */
+.section .body {
+  margin-bottom: 15pt;
+  text-align: justify;
+  font-size: 14pt;
+}
+
+/* BibTeX */
+.section .bibtex {
+  margin: 5pt 0;
+  text-align: left;
+  font-size: 22pt;
+}
