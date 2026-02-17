@@ -5,7 +5,7 @@ requires-python = ">= 3.11"
 version = "1.0.0"
 readme = "README.md"
 dependencies = [
-    "rerun-sdk>=0.29.1",
+    "rerun-sdk==0.29.1",
 ]
 
 [build-system]

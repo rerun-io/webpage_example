@@ -1677,9 +1677,9 @@ packages:
 - pypi: ./
   name: webpage-example
   version: 1.0.0
-  sha256: f457e0e4dbb9c89bb17de468f9cb3d8308e9faef3bf3a525ab2cdaa55d8d38fd
+  sha256: 4ddc434c130fb5b3d2295eede2a6e65c42dda4c5dfb70f3e9e57cacf87534bd8
   requires_dist:
-  - rerun-sdk>=0.29.1
+  - rerun-sdk==0.29.1
   requires_python: '>=3.11'
 - conda: https://conda.anaconda.org/conda-forge/linux-64/zstd-1.5.7-hb78ec9c_6.conda
   sha256: 68f0206ca6e98fea941e5717cec780ed2873ffabc0e1ed34428c061e2c6268c7
