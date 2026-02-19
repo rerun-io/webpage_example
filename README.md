@@ -116,11 +116,12 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     defaults:
       run:
+        # The webpage is defined in the docs folder, so we set it as the default
         working-directory: docs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -141,13 +142,12 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload dist repository
+          # The folder the action should upload to GitHub Pages. In this example, we are uploading the dist folder inside docs, which is where our static site is built.
           path: "./docs/dist"
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
 ```
 
 This workflow assumes that the webpage is located in a folder `docs` in the root of our repository, on the `main` branch. You may want to update this as you see fit. It will deploy the website for every push to `main`.
