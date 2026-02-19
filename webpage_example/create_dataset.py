@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import rerun as rr
 
 from math import tau
