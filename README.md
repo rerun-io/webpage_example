@@ -65,9 +65,21 @@ Github have great documentation for [GitHub Pages](https://docs.github.com/en/pa
 
 Create a Github repository, it is good to at least have a `README.md` file in the repository.
 
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="media/light/create_repo.png">
+  <source media="(prefers-color-scheme: dark)" srcset="media/dark/create_repo.png">
+  <img alt="Shows the GitHub 'Create a new repository' page." src="media/light/create_repo.png">
+</picture>
+
 #### Enable Github pages
 
 Next, we want to enable Github pages. This is done by going to your repository in your browser, go to `Settings` and then select `Pages`. Under `Build and deployment` select `GitHub Actions` as the `Source`.
+
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="media/light/enable_gh_pages.png">
+  <source media="(prefers-color-scheme: dark)" srcset="media/dark/enable_gh_pages.png">
+  <img alt="Shows the page to enable 'GitHub Pages' for a repository." src="media/light/enable_gh_pages.png">
+</picture>
 
 #### Create a Github action workflow
 
