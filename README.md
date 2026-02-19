@@ -71,7 +71,7 @@ Next, we want to enable Github pages. This is done by going to your repository i
 
 #### Create a Github action workflow
 
-Now we should setup the workflow that deploys are Github pages webpage. Create a file `deploy.yml` inside the `github/workflows` folder of your Github repository. You may have to create the folders yourself. The contents of the file should be:
+Now we should setup the workflow that deploys are Github pages webpage. Create a file `deploy.yml` inside the `.github/workflows` folder of your Github repository. You may have to create the folders yourself. The contents of the file should be:
 
 ```yml
 # Simple workflow for deploying static content to GitHub Pages
