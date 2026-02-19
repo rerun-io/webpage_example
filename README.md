@@ -65,9 +65,21 @@ Github have great documentation for [GitHub Pages](https://docs.github.com/en/pa
 
 Create a Github repository, it is good to at least have a `README.md` file in the repository.
 
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="media/light/create_repo.png">
+  <source media="(prefers-color-scheme: dark)" srcset="media/dark/create_repo.png">
+  <img alt="Shows the GitHub 'Create a new repository' page." src="media/light/create_repo.png">
+</picture>
+
 #### Enable Github pages
 
 Next, we want to enable Github pages. This is done by going to your repository in your browser, go to `Settings` and then select `Pages`. Under `Build and deployment` select `GitHub Actions` as the `Source`.
+
+<picture>
+  <source media="(prefers-color-scheme: light)" srcset="media/light/enable_gh_pages.png">
+  <source media="(prefers-color-scheme: dark)" srcset="media/dark/enable_gh_pages.png">
+  <img alt="Shows the page to enable 'GitHub Pages' for a repository." src="media/light/enable_gh_pages.png">
+</picture>
 
 #### Create a Github action workflow
 
@@ -104,11 +116,13 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     defaults:
       run:
+        # The webpage is defined in the docs folder,
+        # so we set it as the default
         working-directory: docs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -129,13 +143,14 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload dist repository
+          # The folder the action should upload to GitHub Pages.
+          # In this example, we are uploading the dist folder inside docs,
+          # which is where our static site is built.
           path: "./docs/dist"
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
 ```
 
 This workflow assumes that the webpage is located in a folder `docs` in the root of our repository, on the `main` branch. You may want to update this as you see fit. It will deploy the website for every push to `main`.
