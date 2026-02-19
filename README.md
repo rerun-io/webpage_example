@@ -47,23 +47,23 @@ Second we want to setup the blueprint, to configure what the user will be seeing
 
 The `.rbl` file is created by commenting out `rerun.save` from the `webpage_example/create_dataset.py` file and instead run `rr.spawn()`. This will open the viewer and log the data to the viewer. Then we setup the view to our liking and [use `Save blueprint...` from the file menu](https://rerun.io/docs/concepts/visualization/blueprints#2-save-and-load-files).
 
-> For web deployment, keeping file sizes optimized is key for fast loading. Prune your data and keep only what is neccessary to enable a seemless experience.
+> For web deployment, keeping file sizes optimized is key for fast loading. Prune your data and keep only what is necessary to enable a seamless experience.
 
 ### 2. Hosting the data
 
 The webpage needs to "fetch" the data from somewhere. You can host the data wherever you please. If the data is small enough, you can store it directly in the repository itself. Otherwise, you may use a service, such as Google Drive, OneDrive, or similar to store your data.
 
-In this example, we are hosting the `dna_structure.rrb` and `dna_structure.rbl` in the `recordings` folder of this repository.
+In this example, we are hosting the `dna_structure.rrd` and `dna_structure.rbl` in the `recordings` folder of this repository.
 
 <!-- > Potentially talk about cross-origin resource sharing problems. -->
 
 ### 3. Create your webpage
 
-Github have great documentation for [GitHub Pages](https://docs.github.com/en/pages), which we recommend you reading. Here we will go through the approach that we took.
+GitHub has great documentation for [GitHub Pages](https://docs.github.com/en/pages), which we recommend reading. Here we will go through the approach that we took.
 
 #### Create a Github repository
 
-Create a Github repository, it is good to at least have a `README.md` file in the repository.
+Create a GitHub repository. It is good to at least have a `README.md` file in the repository.
 
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="media/light/create_repo.png">
@@ -73,7 +73,7 @@ Create a Github repository, it is good to at least have a `README.md` file in th
 
 #### Enable Github pages
 
-Next, we want to enable Github pages. This is done by going to your repository in your browser, go to `Settings` and then select `Pages`. Under `Build and deployment` select `GitHub Actions` as the `Source`.
+Next, we want to enable GitHub pages. This is done by going to your repository in your browser, navigating to `Settings`, and then selecting `Pages`. Under `Build and deployment` select `GitHub Actions` as the `Source`.
 
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="media/light/enable_gh_pages.png">
@@ -83,7 +83,7 @@ Next, we want to enable Github pages. This is done by going to your repository i
 
 #### Create a Github action workflow
 
-Now we should setup the workflow that deploys are Github pages webpage. Create a file `deploy.yml` inside the `.github/workflows` folder of your Github repository. You may have to create the folders yourself. The contents of the file should be:
+Now we should set up the workflow that deploys our GitHub Pages webpage. Create a file `deploy.yml` inside the `.github/workflows` folder of your Github repository. You may have to create the folders yourself. The contents of the file should be:
 
 ```yml
 # Simple workflow for deploying static content to GitHub Pages
@@ -153,11 +153,11 @@ jobs:
         uses: actions/deploy-pages@v4
 ```
 
-This workflow assumes that the webpage is located in a folder `docs` in the root of our repository, on the `main` branch. You may want to update this as you see fit. It will deploy the website for every push to `main`.
+This workflow assumes the webpage is located in a `docs` folder at the root of the repository, on the `main` branch. You may want to update this as you see fit. It will deploy the website on every push to `main`.
 
 #### Copy the docs folder
 
-Everything related to the webpage in this repository (except for the workflow) has been put into the `docs` folder. To start working on your webpage, you can copy this repository's `docs` folder to your repository. After you have pushed the code, you need to wait for the Github action to finish deploying your webpage. You can see when it has finished by visiting the repository in your web browser.
+Everything related to the webpage in this repository (except for the workflow) has been put into the `docs` folder. To start working on your webpage, copy this repository's `docs` folder to your repository.
 
 #### Make the webpage yours
 
@@ -170,7 +170,7 @@ Update the files inside the `docs` folder to reflect on your work. There are mai
 * `docs/src/main.ts`
   * Here is where we create the interactive Rerun viewer on the webpage. You most likely would want to change the variables `rrd` and `rbl` to point to your own files.
 * `docs/package.json`
-  * Make sure to sync the Rerun version you use to generate the `.rrb` and `.rbl` files with the version of the version of `@rerun-io/web-viewer` specified in this file.
+  * Make sure to sync the Rerun version you use to generate the `.rrd` and `.rbl` files with the version of `@rerun-io/web-viewer` specified in this file.
 
 You probably also want to upload your own assets (images, videos, icons), to the `docs/assets` folder and use them inside `docs/index.html`.
 
@@ -178,11 +178,11 @@ Unless you want to do something more advanced, you can probably leave the other 
 
 #### Wait for deployment
 
-After you have pushed your code, you need to wait for the Github action to finish deploying your webpage. You can see when it has finished by visiting the repository in your web browser.
+After you have pushed your code, wait for the GitHub Actions workflow to finish deploying. You can monitor its progress by visiting the repository's Actions tab in your browser.
 
 #### Access your site
 
-You will be able to access your site at: [https://your-username.github.io/your-repo-name](https://your-username.github.io/your-repo-name), replace `your-username` with your Github username and `your-repo-name` with the name of the repository you created.
+You will be able to access your site at `https://your-username.github.io/your-repo-name`, where `your-username` is your GitHub username and `your-repo-name` is the name of your repository.
 
 ## Test your page locally
 
@@ -206,4 +206,4 @@ and it will run those commands for you.
 
 ## Things to look out for
 
-1. Make sure to keep the data files (`.rrd` and `.rbl`) at the same version as the `@rerun-io/web-viewer` version specified in `docs/package.json`. In this example repo, that means that the `rerun-sdk` version specified in `pyproject.toml`, when generating the data, is the same as the `@rerun-io/web-viewer` version specified in `docs/package.json`, when viewing the data.
+1. Make sure to keep the data files (`.rrd` and `.rbl`) at a similar version as the `@rerun-io/web-viewer` version specified in `docs/package.json`. In this example repo, that means the `rerun-sdk` version in `pyproject.toml` (used when generating the data) must be similar to the `@rerun-io/web-viewer` version in `docs/package.json` (used when viewing the data).
