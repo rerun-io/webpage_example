@@ -1,4 +1,4 @@
-# How to embed Rerun in your webpage
+# Embedding the Rerun Viewer in a Webpage
 
 <picture>
  <img src="media/webpage_example.gif" alt="">
@@ -18,10 +18,8 @@ You can see the [resulting webpage here](https://rerun-io.github.io/webpage_exam
 
 ## Useful resources
 
-Below you will find a collection of useful Rerun resources for this example:
-
 * [Embed Rerun in Web pages](https://rerun.io/docs/howto/integrations/embed-web)
-* API pages:
+* API reference:
   * [Web viewer](https://ref.rerun.io/docs/js/stable/web-viewer/index.html)
   * [React web viewer](https://ref.rerun.io/docs/js/stable/web-viewer-react/index.html)
 * Rerun web-viewer examples:
@@ -35,35 +33,31 @@ Below you will find a collection of useful Rerun resources for this example:
 
 ## How-to guide
 
-This guide goes from nothing to a complete live webpage hosted via [GitHub Pages](https://docs.github.com/en/pages). We assume you are running all commands within the `webpage_example` repository folder and using the [Pixi](https://pixi.sh/latest/#installation) package manager for environment setup (only needed if you want to generate the recordings dataset yourself). To build and host the webpage locally we make use of [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
-
-<!-- Here we will go from nothing to having a complete webpage. We will utilize Github pages to host the webpage. Using Github pages is common, as it allows you to boundle your webpage together with the project and source code itself. -->
+This guide goes from nothing to a complete live webpage hosted via [GitHub Pages](https://docs.github.com/en/pages). We assume you are running all commands within the `webpage_example` repository folder and using the [Pixi](https://pixi.sh/latest/#installation) package manager for environment setup (only needed if you want to generate the recordings dataset yourself). To build and host the webpage locally, we make use of [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 
 ### 1. Preparing the data (`.rrd` and `.rbl` files)
 
-The first thing you need is data. Record your streams (point clouds, images, transforms) and save them as an `.rrd` file. For this example, we will use the [getting started guide](https://rerun.io/docs/getting-started/data-in/python) to produce our data. We have prepared the code in the file `webpage_example/create_dataset.py`. To save the data to a file, instead of logging it to the Rerun viewer, we call the [`rerun.save`](https://ref.rerun.io/docs/python/stable/common/initialization_functions/#rerun.save) before logging any of the data. You can also [use `Save recording...` from the file menu](https://rerun.io/docs/getting-started/data-out/export-dataframe#load-the-recording) to save the `.rrd` file from the Rerun viewer.
+The first thing you need is data. Record your streams (point clouds, images, transforms) and save them as an `.rrd` file. For this example, we will use the [getting started guide](https://rerun.io/docs/getting-started/data-in/python) to produce our data. The code is prepared in `webpage_example/create_dataset.py`. To save the data to a file instead of logging it to the Rerun viewer, call [`rerun.save`](https://ref.rerun.io/docs/python/stable/common/initialization_functions/#rerun.save) before logging any data. You can also [use `Save recording...` from the file menu](https://rerun.io/docs/getting-started/data-out/export-dataframe#load-the-recording) to export the `.rrd` file directly from the viewer.
 
-Second we want to setup the blueprint, to configure what the user will be seeing in the Rerun viewer when opening the page. If you want, you can add the blueprint directly to the `.rrd` file we created in the first step. The benefit of separating them is that you can update the blueprint separately without having to regenerate the `.rrd` file. In this example, the generating of the `.rrd` is quick and the file is small, but perhaps your data is larger which means it will take longer for you to produce and upload the `.rrd` file, compared to updating and uploading the blueprint (`.rbl`) file, which is typically much smaller.
+Next, set up the blueprint to configure what the viewer displays when the page is opened. The blueprint can be embedded directly in the `.rrd` file, but keeping it separate as an `.rbl` file means you can update the layout without regenerating the recording. This is especially useful if your data is large and slow to produce — the `.rbl` file is typically much smaller and faster to update and upload.
 
-The `.rbl` file is created by commenting out `rerun.save` from the `webpage_example/create_dataset.py` file and instead run `rr.spawn()`. This will open the viewer and log the data to the viewer. Then we setup the view to our liking and [use `Save blueprint...` from the file menu](https://rerun.io/docs/concepts/visualization/blueprints#2-save-and-load-files).
+To create the `.rbl` file, comment out `rerun.save` in `webpage_example/create_dataset.py` and call `rr.spawn()` instead. This opens the viewer with the logged data. Arrange the view to your liking, then [use `Save blueprint...` from the file menu](https://rerun.io/docs/concepts/visualization/blueprints#2-save-and-load-files).
 
-> For web deployment, keeping file sizes optimized is key for fast loading. Prune your data and keep only what is necessary to enable a seamless experience.
+> For web deployment, keeping file sizes small is important for fast loading. Prune your data and include only what is necessary for a seamless experience.
 
 ### 2. Hosting the data
 
-The webpage needs to "fetch" the data from somewhere. You can host the data wherever you please. If the data is small enough, you can store it directly in the repository itself. Otherwise, you may use a service, such as Google Drive, OneDrive, or similar to store your data.
+The webpage fetches the data from a URL. You can host the data wherever you prefer. If the files are small enough, storing them directly in the repository is the simplest option. For larger files, consider a cloud storage service such as Google Drive or OneDrive.
 
-In this example, we are hosting the `dna_structure.rrd` and `dna_structure.rbl` in the `recordings` folder of this repository.
-
-<!-- > Potentially talk about cross-origin resource sharing problems. -->
+In this example, `dna_structure.rrd` and `dna_structure.rbl` are hosted in the `recordings` folder of this repository.
 
 ### 3. Create your webpage
 
-GitHub has great documentation for [GitHub Pages](https://docs.github.com/en/pages), which we recommend reading. Here we will go through the approach that we took.
+GitHub has thorough documentation for [GitHub Pages](https://docs.github.com/en/pages). The steps below describe the approach taken in this example.
 
-#### Create a Github repository
+#### Create a GitHub repository
 
-Create a GitHub repository. It is good to at least have a `README.md` file in the repository.
+Create a GitHub repository with at least a `README.md` file.
 
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="media/light/create_repo.png">
@@ -71,9 +65,9 @@ Create a GitHub repository. It is good to at least have a `README.md` file in th
   <img alt="Shows the GitHub 'Create a new repository' page." src="media/light/create_repo.png">
 </picture>
 
-#### Enable Github pages
+#### Enable GitHub Pages
 
-Next, we want to enable GitHub pages. This is done by going to your repository in your browser, navigating to `Settings`, and then selecting `Pages`. Under `Build and deployment` select `GitHub Actions` as the `Source`.
+In your repository, go to `Settings` → `Pages`. Under `Build and deployment`, set the `Source` to `GitHub Actions`.
 
 <picture>
   <source media="(prefers-color-scheme: light)" srcset="media/light/enable_gh_pages.png">
@@ -81,9 +75,9 @@ Next, we want to enable GitHub pages. This is done by going to your repository i
   <img alt="Shows the page to enable 'GitHub Pages' for a repository." src="media/light/enable_gh_pages.png">
 </picture>
 
-#### Create a Github action workflow
+#### Create a GitHub Actions workflow
 
-Now we should set up the workflow that deploys our GitHub Pages webpage. Create a file `deploy.yml` inside the `.github/workflows` folder of your Github repository. You may have to create the folders yourself. The contents of the file should be:
+Create a file at `.github/workflows/deploy.yml` in your repository (you may need to create the folders). Use the following contents:
 
 ```yml
 # Simple workflow for deploying static content to GitHub Pages
@@ -153,40 +147,36 @@ jobs:
         uses: actions/deploy-pages@v4
 ```
 
-This workflow assumes the webpage is located in a `docs` folder at the root of the repository, on the `main` branch. You may want to update this as you see fit. It will deploy the website on every push to `main`.
+This workflow assumes the webpage is located in a `docs` folder at the root of the repository, on the `main` branch. Update the paths and branch name as needed. The workflow runs on every push to `main`.
 
 #### Copy the docs folder
 
-Everything related to the webpage in this repository (except for the workflow) has been put into the `docs` folder. To start working on your webpage, copy this repository's `docs` folder to your repository.
+Everything related to the webpage in this repository (except for the workflow) is in the `docs` folder. Copy it to your repository to get started.
 
-#### Make the webpage yours
+#### Customize the webpage
 
-Update the files inside the `docs` folder to reflect on your work. There are mainly four files that you probably want to edit:
+The following four files are the main ones you will want to edit:
 
-* `docs/index.html`
-  * Here you fill in the content of your webpage.
-* `docs/style.css`
-  * Here you configure the style of your webpage. The supplied style supports both light and dark theme, and will switch between them based on the browsers/systems settings.
-* `docs/src/main.ts`
-  * Here is where we create the interactive Rerun viewer on the webpage. You most likely would want to change the variables `rrd` and `rbl` to point to your own files.
-* `docs/package.json`
-  * Make sure to sync the Rerun version you use to generate the `.rrd` and `.rbl` files with the version of `@rerun-io/web-viewer` specified in this file.
+* `docs/index.html` — the content of your webpage
+* `docs/style.css` — the visual style; the supplied stylesheet supports both light and dark themes, switching automatically based on the browser or system setting
+* `docs/src/main.ts` — where the interactive Rerun viewer is initialized; update the `rrd` and `rbl` variables to point to your own files
+* `docs/package.json` — ensure the `@rerun-io/web-viewer` version here matches the version of the Rerun SDK used to generate the `.rrd` and `.rbl` files
 
-You probably also want to upload your own assets (images, videos, icons), to the `docs/assets` folder and use them inside `docs/index.html`.
+You will also likely want to add your own assets (images, videos, icons) to `docs/assets` and reference them from `docs/index.html`. As well as putting your own `favicon` in the `docs/public` folder.
 
-Unless you want to do something more advanced, you can probably leave the other files inside the `docs` folder as they are. Changes to those files are out-of-scope for this example.
+The remaining files in `docs` can generally be left as-is unless you need more advanced customization.
 
 #### Wait for deployment
 
-After you have pushed your code, wait for the GitHub Actions workflow to finish deploying. You can monitor its progress by visiting the repository's Actions tab in your browser.
+After pushing your code, wait for the GitHub Actions workflow to finish. You can monitor its progress in the repository's **Actions** tab.
 
 #### Access your site
 
-You will be able to access your site at `https://your-username.github.io/your-repo-name`, where `your-username` is your GitHub username and `your-repo-name` is the name of your repository.
+Once deployed, your site will be available at `https://your-username.github.io/your-repo-name`, where `your-username` is your GitHub username and `your-repo-name` is your repository name.
 
 ## Test your page locally
 
-You can test your page locally by cloning the repo and running:
+To test locally, clone the repo and run:
 
 ```sh
 cd docs
@@ -194,16 +184,14 @@ npm install
 npm run dev
 ```
 
-and then open the link that is printed.
+Then open the URL printed to the terminal.
 
-In this repository we have also made a Pixi task so you can run:
+Alternatively, if you are using Pixi, a task is provided:
 
 ```sh
- pixi run host_webpage
+pixi run host_webpage
 ```
-
-and it will run those commands for you.
 
 ## Things to look out for
 
-1. Make sure to keep the data files (`.rrd` and `.rbl`) at a similar version as the `@rerun-io/web-viewer` version specified in `docs/package.json`. In this example repo, that means the `rerun-sdk` version in `pyproject.toml` (used when generating the data) must be similar to the `@rerun-io/web-viewer` version in `docs/package.json` (used when viewing the data).
+1. Keep the data files (`.rrd` and `.rbl`) at the same version as `@rerun-io/web-viewer` in `docs/package.json`. In this example, that means the `rerun-sdk` version in `pyproject.toml` (used to generate the data) must match the `@rerun-io/web-viewer` version in `docs/package.json` (used to display the data).
